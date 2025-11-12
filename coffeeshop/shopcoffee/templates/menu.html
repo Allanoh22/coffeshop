@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<h1>Menu</h1>
+<ul>
+  {% for item in items %}
+    <li>
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+      <p>Price: ${{ item.price }}</p>
+      <form action="{% url 'add_to_cart' item.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'view_cart' %}">View Cart</a>
+{% endblock %}
