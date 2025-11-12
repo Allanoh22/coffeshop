@@ -11,8 +11,13 @@ class MenuItemAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'status', 'created_at')
     list_filter = ('status',)
-    date_hierarchy = 'created_at'
+    date_hierarchy = ('created_at')
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('order', 'menu_item', 'quantity')
+
+admin.site.register(MenuItem, MenuItemAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)
+
